@@ -573,6 +573,28 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
+	 * Returns an array of possible properties in the result.
+	 * Don't call this functon directly: use getFinalResultProperties() to
+	 * allow hooks to modify descriptions as needed.
+	 * @return array or false
+	 */
+	protected function getResultProperties() {
+		return false;
+	}
+
+	/**
+	 * Get final possible result properties, after hooks have had a chance to tweak it as
+	 * needed.
+	 *
+	 * @return array
+	 */
+	public function getFinalResultProperties() {
+		$properties = $this->getResultProperties();
+		wfRunHooks( 'APIGetResultProperties', array( &$this, &$properties ) );
+		return $properties;
+	}
+
+	/**
 	 * Get final module description, after hooks have had a chance to tweak it as
 	 * needed.
 	 *

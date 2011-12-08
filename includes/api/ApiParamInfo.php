@@ -251,6 +251,35 @@ class ApiParamInfo extends ApiBase {
 		}
 		$result->setIndexedTagName( $retval['parameters'], 'param' );
 
+		$props = $obj->getFinalResultProperties();
+		if ($props) {
+			$retval['props'] = array();
+
+			foreach ( $props as $prop => $properties ) {
+				$propResult = array();
+				$propResult['name'] = $prop;
+				$propResult['properties'] = array();
+
+				foreach ( $properties as $property => $type )
+				{
+					$propertyResult = array();
+					$propertyResult['name'] = $property;
+					$propertyResult['type'] = $type;
+
+					if ( is_array( $propertyResult['type'] ) ) {
+						$propertyResult['type'] = array_values( $propertyResult['type'] );
+						$result->setIndexedTagName( $propertyResult['type'], 't' );
+					}
+
+					$propResult['properties'][] = $propertyResult;
+				}
+
+				$result->setIndexedTagName( $propResult['properties'], 'property' );
+				$retval['props'][] = $propResult;
+			}
+			$result->setIndexedTagName( $retval['props'], 'prop' );
+		}
+
 		// Errors
 		$retval['errors'] = $this->parseErrors( $obj->getPossibleErrors() );
 		$result->setIndexedTagName( $retval['errors'], 'error' );
