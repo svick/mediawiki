@@ -80,6 +80,15 @@ class ApiPatrol extends ApiBase {
 		);
 	}
 
+  public function getResultProperties() {
+    return array( new ApiPropertyGroup( null, array(
+        new ApiProperty( 'rcid', 'integer', false ),
+        new ApiProperty( 'ns', 'namespace', false ),
+        new ApiProperty( 'title', 'string', false )
+      )
+    ));
+  }
+
 	public function getDescription() {
 		return 'Patrol a page or revision';
 	}

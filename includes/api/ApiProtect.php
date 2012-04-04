@@ -184,6 +184,15 @@ class ApiProtect extends ApiBase {
 		);
 	}
 
+  public function getResultProperties() {
+    return array( new ApiPropertyGroup( null, array(
+        new ApiProperty( 'title', 'string', false ),
+        new ApiProperty( 'reason', 'string', false ),
+        new ApiProperty( 'cascade', 'boolean', false )
+      )
+    ));
+  }
+
 	public function getDescription() {
 		return 'Change the protection level of a page';
 	}

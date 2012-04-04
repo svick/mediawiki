@@ -576,7 +576,7 @@ abstract class ApiBase extends ContextSource {
 	 * Returns an array of possible properties in the result.
 	 * Don't call this functon directly: use getFinalResultProperties() to
 	 * allow hooks to modify descriptions as needed.
-	 * @return array or false
+	 * @return array|bool False on no properties
 	 */
 	protected function getResultProperties() {
 		return false;
@@ -1627,4 +1627,60 @@ abstract class ApiBase extends ContextSource {
 	public static function getBaseVersion() {
 		return __CLASS__ . ': $Id$';
 	}
+}
+
+/**
+ * This class represents information about a group of properties
+ * that can be returned from an API module.
+ */
+class ApiPropertyGroup {
+  
+  /**
+   * The name of this group.
+   * If it's null, this group describes properties on the root object of the response.
+   * @return string
+   */
+  public $name;
+  public $properties = array();
+
+  public function __construct( $name = null, $properties = null ) {
+    $this->name = $name;
+    foreach ( $properties as $property ) {
+      $this->addPropertyInternal( $property );
+    }
+  }
+  
+  /**
+   * Returns whether this group describes properties of the root object of the response.
+   * @return bool
+   */
+  public function isRootGroup() {
+    return $this->name === null;
+  }
+
+  public function addProperty( $name, $type, $nullable = null ) {
+    addPropertyInternal( new ApiProperty( $name, $type, $nullable) );
+  }
+
+  private function addPropertyInternal( $property ) {
+    $property->nullable = $property->nullable === TRUE || ($property->nullable !== FALSE && $this->isRootGroup());
+    $this->properties[] = $property;
+  }
+}
+
+/**
+ * This class represents information about a property
+ * that can be returned from an API module.
+ */
+class ApiProperty {
+
+  public $name;
+  public $type;
+  public $nullable;
+
+  public function __construct( $name, $type, $nullable = null ) {
+    $this->name = $name;
+    $this->type = $type;
+    $this->nullable = $nullable;
+  }
 }

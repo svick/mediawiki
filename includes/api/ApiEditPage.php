@@ -500,6 +500,22 @@ class ApiEditPage extends ApiBase {
 		);
 	}
 
+  public function getResultProperties() {
+    return array(new ApiPropertyGroup(null, array(
+      new ApiProperty( 'new', 'boolean', false ),
+      new ApiProperty( 'result', array(
+        'Success',
+        'Failure'
+      ), false ),
+      new ApiProperty( 'pageid', 'integer' ),
+      new ApiProperty( 'title', 'string' ),
+      new ApiProperty( 'nochange', 'boolean', false ),
+      new ApiProperty( 'oldrevid', 'integer' ),
+      new ApiProperty( 'newrevid', 'integer' ),
+      new ApiProperty( 'newtimestamp', 'string' )
+    )));
+  }
+
 	public function needsToken() {
 		return true;
 	}

@@ -132,15 +132,23 @@ class ApiFileRevert extends ApiBase {
 	}
 
 	public function getParamDescription() {
-		$params = array(
+		return array(
 			'filename' => 'Target filename without the File: prefix',
 			'token' => 'Edit token. You can get one of these through prop=info',
 			'comment' => 'Upload comment',
 			'archivename' => 'Archive name of the revision to revert to',
 		);
+	}
 
-		return $params;
-
+  public function getResultProperties() {
+    return array( new ApiPropertyGroup( null, array(
+        new ApiProperty( 'result', array(
+          'Success',
+          'Failure'
+        ), false ),
+        new ApiProperty( 'errors', 'string' )
+      )
+    ));
 	}
 
 	public function getDescription() {

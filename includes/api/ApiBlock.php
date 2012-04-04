@@ -181,6 +181,24 @@ class ApiBlock extends ApiBase {
 		);
 	}
 
+  public function getResultProperties() {
+    return array( new ApiPropertyGroup( null, array(
+        new ApiProperty( 'blocktoken', 'string' ),
+        new ApiProperty( 'user', 'string' ),
+        new ApiProperty( 'userID', 'integer' ),
+        new ApiProperty( 'expiry', 'string' ),
+        new ApiProperty( 'reason', 'string' ),
+        new ApiProperty( 'anononly', 'boolean', false ),
+        new ApiProperty( 'nocreate', 'boolean', false ),
+        new ApiProperty( 'autoblock', 'boolean', false ),
+        new ApiProperty( 'noemail', 'boolean', false ),
+        new ApiProperty( 'hidename', 'boolean', false ),
+        new ApiProperty( 'allowusertalk', 'boolean', false ),
+        new ApiProperty( 'watchuser', 'boolean', false )
+      )
+    ));
+  }
+
 	public function getDescription() {
 		return 'Block a user';
 	}

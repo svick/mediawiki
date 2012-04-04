@@ -366,29 +366,29 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 
 	public function getResultProperties() {
 		return array(
-			'ids' => array( 
-				'pageid' => 'integer'
-			),
-			'title' => array(
-				'ns' => 'namespace',
-				'title' => 'string'
-			),
-			'sortkey' => array(
-				'sortkey' => 'string'
-			),
-			'sortkeyprefix' => array(
-				'sortkeyprefix' => 'string'
-			),
-			'type' => array(
-				'type' => array(
+      new ApiPropertyGroup( 'ids', array( 
+        new ApiProperty( 'pageid', 'integer' )
+      )),
+      new ApiPropertyGroup( 'title', array(
+				new ApiProperty( 'ns', 'namespace' ),
+				new ApiProperty( 'title', 'string' )
+			)),
+			new ApiPropertyGroup( 'sortkey', array(
+				new ApiProperty( 'sortkey', 'string' )
+			)),
+			new ApiPropertyGroup( 'sortkeyprefix', array(
+				new ApiProperty( 'sortkeyprefix', 'string' )
+			)),
+			new ApiPropertyGroup( 'type', array(
+				new ApiProperty( 'type', array(
 					'page',
 					'subcat',
 					'file'
-				)
-			),
-			'timestamp' => array(
-				'timestamp' => 'timestamp'
-			)
+				))
+			)),
+			new ApiPropertyGroup( 'timestamp', array(
+				new ApiProperty( 'timestamp', 'timestamp' )
+			))
 		);
 	}
 

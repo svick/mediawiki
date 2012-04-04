@@ -222,6 +222,13 @@ class ApiDelete extends ApiBase {
 		);
 	}
 
+  public function getResultProperties() {
+    return array( new ApiPropertyGroup( null, array(
+      new ApiProperty( 'title', 'string', false ),
+      new ApiProperty( 'reason', 'string', false )
+    )));
+  }
+
 	public function getDescription() {
 		return 'Delete a page';
 	}
