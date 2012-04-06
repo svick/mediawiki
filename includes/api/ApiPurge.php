@@ -134,17 +134,30 @@ class ApiPurge extends ApiBase {
 	}
 
   public function getResultProperties() {
-    return array( new ApiPropertyGroup('', array(
-        new ApiProperty( 'ns', 'namespace', true ),
-        new ApiProperty( 'title', 'string', true ),
-        new ApiProperty( 'pageid', 'integer', true ),
-        new ApiProperty( 'revid', 'integer', true ),
-        new ApiProperty( 'invalid', 'boolean' ),
-        new ApiProperty( 'missing', 'boolean' ),
-        new ApiProperty( 'purged', 'boolean' ),
-        new ApiProperty( 'linkupdate', 'boolean' )
+    return array(
+      '' => array(
+        'ns' => array(
+          ApiBase::PROP_TYPE => 'namespace',
+          ApiBase::PROP_NULLABLE => true
+        ),
+        'title' => array(
+          ApiBase::PROP_TYPE => 'string',
+          ApiBase::PROP_NULLABLE => true
+        ),
+        'pageid' => array(
+          ApiBase::PROP_TYPE => 'integer',
+          ApiBase::PROP_NULLABLE => true
+        ),
+        'revid' => array(
+          ApiBase::PROP_TYPE => 'integer',
+          ApiBase::PROP_NULLABLE => true
+        ),
+        'invalid' => 'boolean',
+        'missing' => 'boolean',
+        'purged' => 'boolean',
+        'linkupdate' => 'boolean'
       )
-    ));
+    );
   }
 
 	public function getDescription() {

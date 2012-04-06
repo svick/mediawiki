@@ -182,21 +182,43 @@ class ApiBlock extends ApiBase {
 	}
 
   public function getResultProperties() {
-    return array( new ApiPropertyGroup( null, array(
-        new ApiProperty( 'blocktoken', 'string' ),
-        new ApiProperty( 'user', 'string' ),
-        new ApiProperty( 'userID', 'integer' ),
-        new ApiProperty( 'expiry', 'string' ),
-        new ApiProperty( 'reason', 'string' ),
-        new ApiProperty( 'anononly', 'boolean', false ),
-        new ApiProperty( 'nocreate', 'boolean', false ),
-        new ApiProperty( 'autoblock', 'boolean', false ),
-        new ApiProperty( 'noemail', 'boolean', false ),
-        new ApiProperty( 'hidename', 'boolean', false ),
-        new ApiProperty( 'allowusertalk', 'boolean', false ),
-        new ApiProperty( 'watchuser', 'boolean', false )
+    return array(
+      ApiBase::PROP_ROOT => array(
+        'blocktoken' => 'string',
+        'user' => 'string',
+        'userID' => 'integer',
+        'expiry' => 'string',
+        'reason' => 'string',
+        'anononly' => array(
+          ApiBase::PROP_TYPE => 'boolean',
+          ApiBase::PROP_NULLABLE => false
+        ),
+        'nocreate' => array(
+          ApiBase::PROP_TYPE => 'boolean',
+          ApiBase::PROP_NULLABLE => false
+        ),
+        'autoblock' => array(
+          ApiBase::PROP_TYPE => 'boolean',
+          ApiBase::PROP_NULLABLE => false
+        ),
+        'noemail' => array(
+          ApiBase::PROP_TYPE => 'boolean',
+          ApiBase::PROP_NULLABLE => false
+        ),
+        'hidename' => array(
+          ApiBase::PROP_TYPE => 'boolean',
+          ApiBase::PROP_NULLABLE => false
+        ),
+        'allowusertalk' => array(
+          ApiBase::PROP_TYPE => 'boolean',
+          ApiBase::PROP_NULLABLE => false
+        ),
+        'watchuser' => array(
+          ApiBase::PROP_TYPE => 'boolean',
+          ApiBase::PROP_NULLABLE => false
+        )
       )
-    ));
+    );
   }
 
 	public function getDescription() {

@@ -56,6 +56,10 @@ abstract class ApiBase extends ContextSource {
 	/// @since 1.17
 	const PARAM_RANGE_ENFORCE = 9; // Boolean, if MIN/MAX are set, enforce (die) these? Only applies if TYPE='integer' Use with extreme caution
 
+  const PROP_ROOT = 'root';
+  const PROP_TYPE = 0;
+  const PROP_NULLABLE = 1;
+
 	const LIMIT_BIG1 = 500; // Fast query, std user limit
 	const LIMIT_BIG2 = 5000; // Fast query, bot/sysop limit
 	const LIMIT_SML1 = 50; // Slow query, std user limit
@@ -1627,60 +1631,4 @@ abstract class ApiBase extends ContextSource {
 	public static function getBaseVersion() {
 		return __CLASS__ . ': $Id$';
 	}
-}
-
-/**
- * This class represents information about a group of properties
- * that can be returned from an API module.
- */
-class ApiPropertyGroup {
-  
-  /**
-   * The name of this group.
-   * If it's null, this group describes properties on the root object of the response.
-   * @return string
-   */
-  public $name;
-  public $properties = array();
-
-  public function __construct( $name = null, $properties = null ) {
-    $this->name = $name;
-    foreach ( $properties as $property ) {
-      $this->addPropertyInternal( $property );
-    }
-  }
-  
-  /**
-   * Returns whether this group describes properties of the root object of the response.
-   * @return bool
-   */
-  public function isRootGroup() {
-    return $this->name === null;
-  }
-
-  public function addProperty( $name, $type, $nullable = null ) {
-    addPropertyInternal( new ApiProperty( $name, $type, $nullable) );
-  }
-
-  private function addPropertyInternal( $property ) {
-    $property->nullable = $property->nullable === TRUE || ($property->nullable !== FALSE && $this->isRootGroup());
-    $this->properties[] = $property;
-  }
-}
-
-/**
- * This class represents information about a property
- * that can be returned from an API module.
- */
-class ApiProperty {
-
-  public $name;
-  public $type;
-  public $nullable;
-
-  public function __construct( $name, $type, $nullable = null ) {
-    $this->name = $name;
-    $this->type = $type;
-    $this->nullable = $nullable;
-  }
 }

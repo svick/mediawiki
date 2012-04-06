@@ -114,14 +114,18 @@ class ApiEmailUser extends ApiBase {
 	}
 
   public function getResultProperties() {
-    return array( new ApiPropertyGroup( null, array(
-        new ApiProperty( 'result', array(
-          'Success',
-          'Failure'
-        ), false ),
-        new ApiProperty( 'message', 'string' )
+    return array(
+      ApiBase::PROP_ROOT => array(
+        'result' => array(
+          ApiBase::PROP_TYPE => array(
+            'Success',
+            'Failure'
+          ),
+          ApiBase::PROP_NULLABLE => false
+        ),
+        'message' => 'string'
       )
-    ));
+    );
   }
 
 	public function getDescription() {

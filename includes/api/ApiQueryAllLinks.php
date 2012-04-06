@@ -204,13 +204,13 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 
   public function getResultProperties() {
     return array(
-      new ApiPropertyGroup( 'ids', array(
-        new ApiProperty( 'fromid', 'integer' )
-      )),
-      new ApiPropertyGroup( 'title', array(
-        new ApiProperty( 'ns', 'namespace' ),
-        new ApiProperty( 'title', 'string' )
-      ))
+      'ids' => array(
+        'fromid' => 'integer'
+      ),
+      'title' => array(
+        'ns' => 'namespace',
+        'title' => 'string'
+      )
     );
   }
 

@@ -104,10 +104,14 @@ class ApiExpandTemplates extends ApiBase {
 	}
 
   public function getResultProperties() {
-    return array( new ApiPropertyGroup( null, array(
-        new ApiProperty( '*', 'string', false )
+    return array(
+      ApiBase::PROP_ROOT => array(
+        '*' => array(
+          ApiBase::PROP_TYPE => 'string',
+          ApiBase::PROP_NULLABLE => false
+        )
       )
-    ));
+    );
   }
 
 	public function getDescription() {

@@ -501,19 +501,29 @@ class ApiEditPage extends ApiBase {
 	}
 
   public function getResultProperties() {
-    return array(new ApiPropertyGroup(null, array(
-      new ApiProperty( 'new', 'boolean', false ),
-      new ApiProperty( 'result', array(
-        'Success',
-        'Failure'
-      ), false ),
-      new ApiProperty( 'pageid', 'integer' ),
-      new ApiProperty( 'title', 'string' ),
-      new ApiProperty( 'nochange', 'boolean', false ),
-      new ApiProperty( 'oldrevid', 'integer' ),
-      new ApiProperty( 'newrevid', 'integer' ),
-      new ApiProperty( 'newtimestamp', 'string' )
-    )));
+    return array(
+      ApiBase::PROP_ROOT => array(
+        'new' => array(
+          ApiBase::PROP_TYPE => 'boolean',
+          ApiBase::PROP_NULLABLE => false
+        ),
+        'result' => array(
+          ApiBase::PROP_TYPE => array(
+            'Success',
+            'Failure'),
+          ApiBase::PROP_NULLABLE => false
+        ),
+        'pageid' => 'integer',
+        'title' => 'string',
+        'nochange' => array(
+          ApiBase::PROP_TYPE => 'boolean',
+          ApiBase::PROP_NULLABLE => false
+        ),
+        'oldrevid' => 'integer',
+        'newrevid' => 'integer',
+        'newtimestamp' => 'string'
+      )
+    );
   }
 
 	public function needsToken() {

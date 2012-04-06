@@ -225,17 +225,30 @@ class ApiMove extends ApiBase {
 	}
 
   public function getResultProperties() {
-    return array( new ApiPropertyGroup( null, array(
-        new ApiProperty( 'from', 'string', false ),
-        new ApiProperty( 'to', 'string', false ),
-        new ApiProperty( 'reason', 'string', false ),
-        new ApiProperty( 'redirectcreated', 'boolean', false ),
-        new ApiProperty( 'talkfrom', 'string' ),
-        new ApiProperty( 'talkto', 'string' ),
-        new ApiProperty( 'talkmove-error-code', 'string' ),
-        new ApiProperty( 'talkmove-error-info', 'string' )
+    return array(
+      ApiBase::PROP_ROOT => array(
+        'from' => array(
+          ApiBase::PROP_TYPE => 'string',
+          ApiBase::PROP_NULLABLE => false
+        ),
+        'to' => array(
+          ApiBase::PROP_TYPE => 'string',
+          ApiBase::PROP_NULLABLE => false
+        ),
+        'reason' => array(
+          ApiBase::PROP_TYPE => 'string',
+          ApiBase::PROP_NULLABLE => false
+        ),
+        'redirectcreated' => array(
+          ApiBase::PROP_TYPE => 'boolean',
+          ApiBase::PROP_NULLABLE => false
+        ),
+        'talkfrom' => 'string',
+        'talkto' => 'string',
+        'talkmove-error-code' => 'string',
+        'talkmove-error-info' => 'string'
       )
-    ));
+    );
   }
 
 	public function getDescription() {

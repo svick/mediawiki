@@ -126,14 +126,24 @@ class ApiComparePages extends ApiBase {
 	}
 
   public function getResultProperties() {
-    return array( new ApiPropertyGroup( null, array(
-        new ApiProperty( 'fromtitle', 'string' ),
-        new ApiProperty( 'fromrevid', 'integer', false ),
-        new ApiProperty( 'totitle', 'string' ),
-        new ApiProperty( 'torevid', 'integer', false ),
-        new ApiProperty( '*', 'string', false)
+    return array(
+      ApiBase::PROP_ROOT => array(
+        'fromtitle' => 'string',
+        'fromrevid' => array(
+          ApiBase::PROP_TYPE => 'integer',
+          ApiBase::PROP_NULLABLE => false
+        ),
+        'totitle' => 'string',
+        'torevid' => array(
+          ApiBase::PROP_TYPE => 'integer',
+          ApiBase::PROP_NULLABLE => false
+        ),
+        '*' => array(
+          ApiBase::PROP_TYPE => 'string',
+          ApiBase::PROP_NULLABLE => false
+        )
       )
-    ));
+    );
   }
 
 	public function getDescription() {

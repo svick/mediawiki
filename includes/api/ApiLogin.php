@@ -182,33 +182,37 @@ class ApiLogin extends ApiBase {
 	}
 
   public function getResultProperties() {
-    return array( new ApiPropertyGroup( null, array(
-        new ApiProperty( 'result', array(
-          'Success',
-          'NeedToken',
-          'WrongToken',
-          'NoName',
-          'Illegal',
-          'WrongPluginPass',
-          'NotExists',
-          'WrongPass',
-          'EmptyPass',
-          'CreateBlocked',
-          'Throttled',
-          'Blocked',
-          'Aborted'
-        ), false ),
-        new ApiProperty( 'lguserid', 'integer' ),
-        new ApiProperty( 'lgusername', 'string' ),
-        new ApiProperty( 'lgtoken', 'string' ),
-        new ApiProperty( 'cookieprefix', 'string' ),
-        new ApiProperty( 'sessionid', 'string' ),
-        new ApiProperty( 'token', 'string' ),
-        new ApiProperty( 'details', 'string' ),
-        new ApiProperty( 'wait', 'integer' ),
-        new ApiProperty( 'reason', 'string' )
+    return array(
+      ApiBase::PROP_ROOT => array(
+        'result' => array(
+          ApiBase::PROP_TYPE => array(
+            'Success',
+            'NeedToken',
+            'WrongToken',
+            'NoName',
+            'Illegal',
+            'WrongPluginPass',
+            'NotExists',
+            'WrongPass',
+            'EmptyPass',
+            'CreateBlocked',
+            'Throttled',
+            'Blocked',
+            'Aborted'
+          ),
+          ApiBase::PROP_NULLABLE => false
+        ),
+        'lguserid' => 'integer',
+        'lgusername' => 'string',
+        'lgtoken' => 'string',
+        'cookieprefix' => 'string',
+        'sessionid' => 'string',
+        'token' => 'string',
+        'details' => 'string',
+        'wait' => 'integer',
+        'reason' => 'string'
       )
-    ));
+    );
   }
 
 	public function getDescription() {

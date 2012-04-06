@@ -141,14 +141,18 @@ class ApiFileRevert extends ApiBase {
 	}
 
   public function getResultProperties() {
-    return array( new ApiPropertyGroup( null, array(
-        new ApiProperty( 'result', array(
+    return array(
+      ApiBase::PROP_ROOT => array(
+        'result' => array(
+          ApiBase::PROP_TYPE => array(
           'Success',
           'Failure'
-        ), false ),
-        new ApiProperty( 'errors', 'string' )
+          ),
+          ApiBase::PROP_NULLABLE => false
+        ),
+        'errors' => 'string'
       )
-    ));
+    );
 	}
 
 	public function getDescription() {

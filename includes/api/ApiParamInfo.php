@@ -255,25 +255,33 @@ class ApiParamInfo extends ApiBase {
 		if ( $props !== FALSE ) {
 			$retval['props'] = array();
 
-			foreach ( $props as $prop ) {
+			foreach ( $props as $prop => $properties ) {
 				$propResult = array();
-        $name = $prop->name;
-        if ( $name !== null )
-  				$propResult['name'] = $name;
+        if ( $prop != ApiBase::PROP_ROOT )
+          $propResult['name'] = $prop;
 				$propResult['properties'] = array();
 
-				foreach ( $prop->properties as $property )
+				foreach ( $properties as $name => $p )
 				{
 					$propertyResult = array();
-					$propertyResult['name'] = $property->name;
-					$propertyResult['type'] = $property->type;
+
+					$propertyResult['name'] = $name;
+
+          if ( !is_array( $p ) )
+            $p = array( ApiBase::PROP_TYPE => $p );
+
+  			  $propertyResult['type'] = $p[ApiBase::PROP_TYPE];
 
 					if ( is_array( $propertyResult['type'] ) ) {
 						$propertyResult['type'] = array_values( $propertyResult['type'] );
 						$result->setIndexedTagName( $propertyResult['type'], 't' );
 					}
 
-          if ( $property->nullable )
+          $nullable = null;
+          if ( isset( $p[ApiBase::PROP_NULLABLE] ) )
+            $nullable = $p[ApiBase::PROP_NULLABLE];
+
+          if ( $nullable === TRUE || ( $nullable !== FALSE && $prop == ApiBase::PROP_ROOT ) )
             $propertyResult['nullable'] = '';
 
 					$propResult['properties'][] = $propertyResult;

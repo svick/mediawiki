@@ -127,12 +127,13 @@ class ApiImport extends ApiBase {
 	}
 
   public function getResultProperties() {
-    return array( new ApiPropertyGroup( '', array(
-        new ApiProperty( 'ns', 'namespace' ),
-        new ApiProperty( 'title', 'string' ),
-        new ApiProperty( 'revisions', 'integer' )
+    return array(
+      '' => array(
+        'ns' => 'namespace',
+        'title' => 'string',
+        'revisions' => 'integer'
       )
-    ));
+    );
   }
 
 	public function getDescription() {
