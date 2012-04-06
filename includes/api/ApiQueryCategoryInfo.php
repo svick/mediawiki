@@ -106,6 +106,18 @@ class ApiQueryCategoryInfo extends ApiQueryBase {
 		);
 	}
 
+  public function getResultProperties() {
+    return array(
+      '' => array(
+        'size' => 'integer',
+        'pages' => 'integer',
+        'files' => 'integer',
+        'subcats' => 'integer',
+        'hidden' => 'boolean'
+      )
+    );
+  }
+
 	public function getDescription() {
 		return 'Returns information about the given categories';
 	}

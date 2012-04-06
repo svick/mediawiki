@@ -363,6 +363,47 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		);
 	}
 
+  public function getResultProperties() {
+    return array(
+      '' => array(
+        'timestamp' => 'string'
+      ),
+      'revid' => array(
+        'revid' => 'integer'
+      ),
+      'parentid' => array(
+        'parentid' => array(
+          ApiBase::PROP_TYPE => 'integer',
+          ApiBase::PROP_NULLABLE => true
+        )
+      ),
+      'user' => array(
+        'user' => 'string'
+      ),
+      'userid' => array(
+        'userid' => 'integer'
+      ),
+      'comment' => array(
+        'comment' => 'string'
+      ),
+      'parsedcomment' => array(
+        'parsedcomment' => 'string'
+      ),
+      'minor' => array(
+        'minor' => 'boolean'
+      ),
+      'len' => array(
+        'len' => 'integer'
+      ),
+      'sha1' => array(
+        'sha1' => 'string'
+      ),
+      'content' => array(
+        '*' => 'string'
+      )
+    );
+  }
+
 	public function getDescription() {
 		$p = $this->getModulePrefix();
 		return array(
