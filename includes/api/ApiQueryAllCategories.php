@@ -191,6 +191,23 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 		);
 	}
 
+  public function getResultProperties() {
+    return array(
+      new ApiPropertyGroup( '', array(
+        new ApiProperty( '*', 'string' )
+      )),
+      new ApiPropertyGroup( 'size', array(
+        new ApiProperty( 'size', 'integer' ),
+        new ApiProperty( 'pages', 'integer' ),
+        new ApiProperty( 'files', 'integer' ),
+        new ApiProperty( 'subcats', 'integer' )
+      )),
+      new ApiPropertyGroup( 'hidden', array(
+        new ApiProperty( 'hidden', 'boolean' )
+      ))
+    );
+  }
+
 	public function getDescription() {
 		return 'Enumerate all categories';
 	}

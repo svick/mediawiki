@@ -133,6 +133,20 @@ class ApiPurge extends ApiBase {
 		);
 	}
 
+  public function getResultProperties() {
+    return array( new ApiPropertyGroup('', array(
+        new ApiProperty( 'ns', 'namespace', true ),
+        new ApiProperty( 'title', 'string', true ),
+        new ApiProperty( 'pageid', 'integer', true ),
+        new ApiProperty( 'revid', 'integer', true ),
+        new ApiProperty( 'invalid', 'boolean' ),
+        new ApiProperty( 'missing', 'boolean' ),
+        new ApiProperty( 'purged', 'boolean' ),
+        new ApiProperty( 'linkupdate', 'boolean' )
+      )
+    ));
+  }
+
 	public function getDescription() {
 		return array( 'Purge the cache for the given titles.',
 			'Requires a POST request if the user is not logged in.'

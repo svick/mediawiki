@@ -202,6 +202,18 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		);
 	}
 
+  public function getResultProperties() {
+    return array(
+      new ApiPropertyGroup( 'ids', array(
+        new ApiProperty( 'fromid', 'integer' )
+      )),
+      new ApiPropertyGroup( 'title', array(
+        new ApiProperty( 'ns', 'namespace' ),
+        new ApiProperty( 'title', 'string' )
+      ))
+    );
+  }
+
 	public function getDescription() {
 		return 'Enumerate all links that point to a given namespace';
 	}

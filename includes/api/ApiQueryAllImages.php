@@ -230,6 +230,30 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 
 	private $propertyFilter = array( 'archivename' );
 
+  public function getResultProperties() {
+    return array(
+      new ApiPropertyGroup( '', array(
+        new ApiProperty( 'name', 'string' ),
+        new ApiProperty( 'ns', 'namespace' ),
+        new ApiProperty( 'title', 'string' )
+      )),
+      new ApiPropertyGroup( 'timestamp', array(
+        new ApiProperty( 'timespamp', 'timestamp' )
+      )),
+      new ApiPropertyGroup( 'user', array(
+        new ApiProperty( 'userhidden', 'boolean' ),
+        new ApiProperty( 'user', 'string' ),
+        new ApiProperty( 'anon', 'boolean' )
+      )),
+      new ApiPropertyGroup( 'userid', array(
+        new ApiProperty( 'userhidden', 'boolean' ),
+        new ApiProperty( 'userid', 'integer' ),
+        new ApiProperty( 'anon', 'boolean' )
+      ))
+      // TODO: continue here and share it with imageinfo
+    );
+  }
+
 	public function getDescription() {
 		return 'Enumerate all images sequentially';
 	}

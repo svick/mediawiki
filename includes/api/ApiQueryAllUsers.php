@@ -375,6 +375,28 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		);
 	}
 
+  public function getResultProperties() {
+    return array(
+      new ApiPropertyGroup( '', array(
+        new ApiProperty( 'userid', 'integer' ),
+        new ApiProperty( 'name', 'string' ),
+        new ApiProperty( 'recenteditcount', 'integer', true )
+      )),
+      new ApiPropertyGroup( 'blockinfo', array(
+        new ApiProperty( 'blockedby', 'string', true ),
+        new ApiProperty( 'blockedreason', 'string', true ),
+        new ApiProperty( 'blockedexpiry', 'string', true ),
+        new ApiProperty( 'hidden', 'boolean' )
+      )),
+      new ApiPropertyGroup( 'editcount', array(
+        new ApiProperty( 'editcount', 'integer' )
+      )),
+      new ApiPropertyGroup( 'registration', array(
+        new ApiProperty( 'registration', 'string' )
+      ))
+    );
+  }
+
 	public function getDescription() {
 		return 'Enumerate all registered users';
 	}
