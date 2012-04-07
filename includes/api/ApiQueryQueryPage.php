@@ -170,6 +170,29 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 		);
 	}
 
+  public function getResultProperties() {
+    return array(
+      ApiBase::PROP_ROOT => array(
+        'name' => 'string',
+        'disabled' => 'boolean',
+        'cached' => 'boolean',
+        'cachedtimestamp' => array(
+          ApiBase::PROP_TYPE => 'timestamp',
+          ApiBase::PROP_NULLABLE => true
+        )
+      ),
+      '' => array(
+        'value' => 'string',
+        'timestamp' => array(
+          ApiBase::PROP_TYPE => 'timestamp',
+          ApiBase::PROP_NULLABLE => true
+        ),
+        'ns' => 'namespace',
+        'title' => 'string'
+      )
+    );
+  }
+
 	public function getDescription() {
 		return 'Get a list provided by a QueryPage-based special page';
 	}

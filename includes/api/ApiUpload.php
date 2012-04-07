@@ -623,6 +623,31 @@ class ApiUpload extends ApiBase {
 
 	}
 
+  public function getResultProperties() {
+    $props = array(
+      ApiBase::PROP_ROOT => array(
+        'result' => array(
+          ApiBase::PROP_TYPE => array(
+            'Success',
+            'Warning',
+            'Continue',
+            'Queued'
+          ),
+          ApiBase::PROP_NULLABLE => false
+        ),
+        'filekey' => 'string',
+        'sessionkey' => 'string',
+        'offset' => 'integer',
+        'statuskey' => 'string',
+        'filename' => 'string'
+      )
+    );
+
+    $props[''] = array_merge( ApiQueryImageInfo::getResultPropertiesFiltered() );
+
+    return $props;
+  }
+
 	public function getDescription() {
 		return array(
 			'Upload a file, or get the status of pending uploads. Several methods are available:',

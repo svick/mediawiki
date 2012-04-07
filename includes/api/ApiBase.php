@@ -598,6 +598,15 @@ abstract class ApiBase extends ContextSource {
 		return $properties;
 	}
 
+  protected static function addTokenProperties( &$props, $tokenFunctions ) {
+    foreach ( array_keys( $tokenFunctions ) as $token ) {
+      $props[''][$token . 'token'] = array(
+          ApiBase::PROP_TYPE => 'string',
+          ApiBase::PROP_NULLABLE => true
+      );
+    }
+  }
+
 	/**
 	 * Get final module description, after hooks have had a chance to tweak it as
 	 * needed.

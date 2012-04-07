@@ -619,13 +619,6 @@ class ApiQueryImageInfo extends ApiQueryBase {
           ApiBase::PROP_NULLABLE => true
         )
       ),
-      'metadata' => array(
-        'filehiddnen' => 'boolean',
-        'metadata' => array(
-          ApiBase::PROP_TYPE => 'string',
-          ApiBase::PROP_NULLABLE => true
-        )
-      ),
       'mime' => array(
         'filehiddnen' => 'boolean',
         'mime' => array(
