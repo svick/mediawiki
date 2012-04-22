@@ -173,9 +173,18 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
   public function getResultProperties() {
     return array(
       ApiBase::PROP_ROOT => array(
-        'name' => 'string',
-        'disabled' => 'boolean',
-        'cached' => 'boolean',
+        'name' => array(
+          ApiBase:: PROP_TYPE => 'string',
+          ApiBase::PROP_NULLABLE => false
+        ),
+        'disabled' => array(
+          ApiBase::PROP_TYPE => 'boolean',
+          ApiBase::PROP_NULLABLE => false
+        ),
+        'cached' => array(
+          ApiBase::PROP_TYPE => 'boolean',
+          Apibase::PROP_NULLABLE => false
+        ),
         'cachedtimestamp' => array(
           ApiBase::PROP_TYPE => 'timestamp',
           ApiBase::PROP_NULLABLE => true
