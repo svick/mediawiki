@@ -550,7 +550,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
   public static function getResultPropertiesFiltered( $filter = array() ) {
     $props = array(
       'timestamp' => array(
-        'timespamp' => 'timestamp'
+        'timestamp' => 'timestamp'
       ),
       'user' => array(
         'userhidden' => 'boolean',
