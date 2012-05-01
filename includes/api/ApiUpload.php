@@ -624,7 +624,7 @@ class ApiUpload extends ApiBase {
 	}
 
   public function getResultProperties() {
-    $props = array(
+    return array(
       ApiBase::PROP_ROOT => array(
         'result' => array(
           ApiBase::PROP_TYPE => array(
@@ -642,10 +642,6 @@ class ApiUpload extends ApiBase {
         'filename' => 'string'
       )
     );
-
-    $props[''] = array_merge( ApiQueryImageInfo::getResultPropertiesFiltered() );
-
-    return $props;
   }
 
 	public function getDescription() {
